@@ -3,8 +3,8 @@
     <mat-expansion-panel-header (click)="toggle()" class="header" >
       <mat-panel-title>
         <span class="upl_title"> Uploading {{filesNum}} items</span>
-        <mat-icon>{{toggleIcon}}</mat-icon>
-        <button mat-raised-button (click)="closeBottomSheet()"><mat-icon>close</mat-icon></button>
+        <mat-icon class="expand">{{toggleIcon}}</mat-icon>
+        <button class="closeBtn" mat-raised-button (click)="closeBottomSheet()"><mat-icon>close</mat-icon></button>
       </mat-panel-title>
     </mat-expansion-panel-header>
     <div  *ngFor="let upload of uploads">
@@ -35,15 +35,9 @@
               <mat-icon *ngIf="progress<100" class="upl_cancel">delete</mat-icon>
               <mat-icon *ngIf="progress==100" class="upl_cancel">check_circle</mat-icon>
             </div>
-
-
-
           </button>
-
         </div>
       </div>
     </div>
-
-
   </mat-expansion-panel>
 </mat-accordion>

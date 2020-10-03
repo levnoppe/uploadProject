@@ -7,6 +7,18 @@
   background-color: black !important;
 
 }
+
+.expand{
+  font-size: 30px;
+  margin: 10px;
+  vertical-align: bottom;
+}
+
+.closeBtn{
+  padding: 0 !important;
+  min-width: 0 !important;
+}
+
 .mat-expansion-panel{
   max-height: 380px !important;
   overflow-y: scroll;
@@ -24,11 +36,12 @@
 }
 
 .mat-bottom-sheet-container{
-  padding: 1px !important;
+  padding: 0 !important;
 }
 
 .mat-expansion-panel-header {
   padding: 0 !important;
+  margin-bottom: 10px;
 }
 
 .mat-flat-button, .mat-raised-button {
@@ -37,7 +50,8 @@
 }
 
 .upl_title{
-  width: 400px
+  width: 400px;
+  padding-top: 10px;
 }
 
 .upl_page{
