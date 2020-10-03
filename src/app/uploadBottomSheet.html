@@ -1,0 +1,46 @@
+<mat-accordion>
+  <mat-expansion-panel >
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        This is the expansion title <button mat-raised-button (click)="closeBottomSheet()">X</button>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="container">
+      <div class="card">
+        <div class="card-header">
+          Firebase Cloud Storage & Angular 5
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Select a file for upload:</h5>
+          <input type="file"  multiple=true (change)="upload($event)" accept=".*" />
+        </div>
+      </div>
+    </div>
+    <div *ngFor="let upload of uploads">
+      <div>{{upload.fileName}}</div>
+      <div class="progress">
+        <div class="progress-bar bg-success" role="progressbar"
+             [style.width]="(upload.uploadProgress | async) + '%'"
+             [attr.aria-valuenow]="(upload.uploadProgress | async)"
+             aria-valuemin="0" aria-valuemax="100">
+        </div>
+        <div class="btn-group" role="group" *ngIf="upload.uploadState | async; let state">
+          <button type="button" class="btn btn-primary"
+                  (click)="upload.task.cancel()"
+                  [disabled]="!(state === 'paused' || state === 'running')"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+  </mat-expansion-panel>
+
+
+</mat-accordion>
+
+
+
+<mat-nav-list>
