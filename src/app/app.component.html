@@ -1,16 +1,18 @@
 <div class="container" style="height: 100vh">
   <div class="row">
     <div class="col-sm-10"></div>
-
     <div class="col-sm-2">
-      <button mat-raised-button color="accent" (click)="openBottomSheet()" >
+      <button mat-raised-button color="accent" (click)="fileInput.click()" >
         <mat-icon>
           cloud_upload
         </mat-icon>
         Upload Files
+        <input #fileInput multiple=true type="file" (change)="openBottomSheet($event)" style="display:none;" />
       </button>
     </div>
   </div>
+
+
 
 
 </div>

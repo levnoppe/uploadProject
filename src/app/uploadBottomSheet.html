@@ -1,46 +1,43 @@
 <mat-accordion>
-  <mat-expansion-panel >
-    <mat-expansion-panel-header>
+  <mat-expansion-panel expanded hideToggle >
+    <mat-expansion-panel-header (click)="toggle()" class="header" >
       <mat-panel-title>
-        This is the expansion title <button mat-raised-button (click)="closeBottomSheet()">X</button>
+        <span class="upl_title"> Uploading {{filesNum}} items</span>
+        <mat-icon>{{toggleIcon}}</mat-icon>
+        <button mat-raised-button (click)="closeBottomSheet()"><mat-icon>close</mat-icon></button>
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <div class="container">
-      <div class="card">
-        <div class="card-header">
-          Firebase Cloud Storage & Angular 5
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">Select a file for upload:</h5>
-          <input type="file"  multiple=true (change)="upload($event)" accept=".*" />
-        </div>
-      </div>
-    </div>
     <div *ngFor="let upload of uploads">
-      <div>{{upload.fileName}}</div>
-      <div class="progress">
-        <div class="progress-bar bg-success" role="progressbar"
-             [style.width]="(upload.uploadProgress | async) + '%'"
-             [attr.aria-valuenow]="(upload.uploadProgress | async)"
-             aria-valuemin="0" aria-valuemax="100">
+      <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-2" id="quote-3-high">
+          <mat-icon class="upl_page">
+            description
+          </mat-icon>
         </div>
-        <div class="btn-group" role="group" *ngIf="upload.uploadState | async; let state">
-          <button type="button" class="btn btn-primary"
+        <div class="col-lg-8 col-md-8 col-sm-8">
+          <div class="row" id="top-row">{{upload.fileName}}
+          </div>
+          <div class="row" id="middle-row">{{upload.fileSize}}</div>
+          <div class="row progress" id="bottom-row">
+            <div class="progress-bar bg-success" role="progressbar"
+                 [style.width]="(upload.uploadProgress | async) + '%'"
+                 [attr.aria-valuenow]="(upload.uploadProgress | async)"
+                 aria-valuemin="0" aria-valuemax="100">
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2" id="cancel-3-high" *ngIf="upload.uploadState | async; let state">
+          <button type="button"
                   (click)="upload.task.cancel()"
                   [disabled]="!(state === 'paused' || state === 'running')"
           >
-            Cancel
+            <mat-icon class="upl_cancel">
+              {{cancelIcon}}
+            </mat-icon>
           </button>
+
         </div>
       </div>
     </div>
-
-
   </mat-expansion-panel>
-
-
 </mat-accordion>
-
-
-
-<mat-nav-list>

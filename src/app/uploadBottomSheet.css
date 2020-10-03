@@ -1,0 +1,43 @@
+.header {
+  background-color: black !important;
+  color: white !important;
+}
+
+.header:hover {
+  background-color: black !important;
+
+}
+
+.mat-expansion-panel-header-title {
+  color: white !important;
+}
+
+.mat-flat-button, .mat-raised-button {
+  background-color: black !important;
+  color: white !important;
+}
+
+.upl_title{
+  width: 300px
+}
+
+.upl_page{
+  font-size: 50px;
+}
+
+.upl_cancel{
+  font-size: 30px;
+  vertical-align: bottom;
+}
+
+#top-row{
+  font-weight: bold;
+  font-size: larger;
+}
+.progress{
+  height: 5px;
+}
+.mat-expansion-panel-body{
+  padding: 0 !important;
+}
+
