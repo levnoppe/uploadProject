@@ -7,9 +7,28 @@
   background-color: black !important;
 
 }
+.mat-expansion-panel{
+  max-height: 380px !important;
+  overflow-y: scroll;
+
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}
 
 .mat-expansion-panel-header-title {
   color: white !important;
+  padding-left: 10px !important;
+}
+
+.mat-bottom-sheet-container{
+  padding: 1px !important;
+}
+
+.mat-expansion-panel-header {
+  padding: 0 !important;
 }
 
 .mat-flat-button, .mat-raised-button {
@@ -18,7 +37,7 @@
 }
 
 .upl_title{
-  width: 300px
+  width: 400px
 }
 
 .upl_page{

@@ -7,7 +7,7 @@
         <button mat-raised-button (click)="closeBottomSheet()"><mat-icon>close</mat-icon></button>
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <div *ngFor="let upload of uploads">
+    <div  *ngFor="let upload of uploads">
       <div class="row">
         <div class="col-lg-2 col-md-2 col-sm-2" id="quote-3-high">
           <mat-icon class="upl_page">
@@ -27,17 +27,23 @@
           </div>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-2" id="cancel-3-high" *ngIf="upload.uploadState | async; let state">
-          <button type="button"
+          <button type="button" mat-icon-button
                   (click)="upload.task.cancel()"
                   [disabled]="!(state === 'paused' || state === 'running')"
           >
-            <mat-icon class="upl_cancel">
-              {{cancelIcon}}
-            </mat-icon>
+            <div *ngIf="upload.uploadProgress | async; let progress">
+              <mat-icon *ngIf="progress<100" class="upl_cancel">delete</mat-icon>
+              <mat-icon *ngIf="progress==100" class="upl_cancel">check_circle</mat-icon>
+            </div>
+
+
+
           </button>
 
         </div>
       </div>
     </div>
+
+
   </mat-expansion-panel>
 </mat-accordion>

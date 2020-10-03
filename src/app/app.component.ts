@@ -41,12 +41,12 @@ export class UploadBottomSheetComponent {
   filesNum: string;
   uploads: any[];
   allProgress: Observable<any>;
+  completed: boolean;
 
 
   constructor(private _bottomSheetRef: MatBottomSheetRef<UploadBottomSheetComponent>,
               private afStorage: AngularFireStorage,
               @Inject(MAT_BOTTOM_SHEET_DATA) public data: any) {
-    console.log(data);
     this.upload(data.event);
   }
 
@@ -56,25 +56,29 @@ export class UploadBottomSheetComponent {
     const filelist = event.target.files;
     this.filesNum = filelist.length.toString();
     const allProgress: Observable<number>[] = [];
-    let downloadURL: Observable<string>;
+    // let downloadURL: Observable<string>;
     for (const file of filelist) {
       const id = Math.random().toString(36).substring(2);
       const ref = this.afStorage.ref(id);
       const task = ref.put(file);
       const uploadState = task.snapshotChanges().pipe(map(s => s.state));
+      task.snapshotChanges().pipe(map(s => console.log(s)));
       const uploadProgress = task.percentageChanges();
       allProgress.push(uploadProgress);
       const fileSize = (file.size.toPrecision(2) / 1000000) + 'M';
-      task.snapshotChanges().pipe(map(s => s.ref.getDownloadURL().then((url) => {downloadURL = url; })))
+      // task.snapshotChanges().pipe(map(s => s.ref.getDownloadURL()
+      //   .then((url) => {
+      //   downloadURL = url;
+      //   console.log(url);
+      // })))
 
-      ;
+
       const uploadTrack = {
         fileName: file.name,
         fileSize,
         uploadProgress,
         uploadState,
-        task,
-        downloadURL
+        task
       };
       this.uploads.push(uploadTrack);
     }
